@@ -59,9 +59,20 @@ export default {
         // 使用axios的post方法 紧跟着的函数加async 解构获得data属性的值
         const { data: res } = await this.$http.post('login', this.loginForm)
         if (res.meta.status !== 200) {
-          this.$message.error('用户名或密码错误！')
+          this.$message({
+            type: 'error',
+            message: '用户名或密码错误！',
+            duration: 1000,
+            center: true
+          })
         } else {
-          this.$message.success('登录成功')
+          this.$message({
+            type: 'success',
+            message: '登录成功!',
+            duration: 1000,
+            center: true
+
+          })
           window.sessionStorage.setItem('token', res.data.token)
           // 编程式导航
           this.$router.push('/home')
