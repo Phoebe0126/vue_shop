@@ -23,6 +23,7 @@
             :collapse="isCollapse"
             :collapse-transition="false"
             router
+            :default-active="activePath"
           >
             <!-- 一级菜单 -->
             <el-submenu
@@ -70,11 +71,15 @@ export default {
         102: 'el-icon-s-order',
         145: 'el-icon-s-marketing'
       },
-      isCollapse: false
+      isCollapse: false,
+      // 被激活的链接
+      activePath: ''
     }
   },
   created () {
     this.getMenuList()
+    // 设置当前高亮的菜单项 也就是当前路由的路径表示为index
+    this.activePath = this.$router.history.current.path
   },
   methods: {
     exit () {
@@ -84,7 +89,7 @@ export default {
     async getMenuList () {
       const { data: res } = await this.$http.get('menus')
       if (res.meta.status !== 200) {
-        return this.$message.error('res.meta.msg')
+        return this.$message.error(res.meta.msg)
       }
       this.menuList = res.data
     },

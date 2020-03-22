@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../components/Login'
 import Home from '../components/Home'
 import Welcome from '../components/Welcome'
+import Users from '../components/Users'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +22,9 @@ const routes = [
       // 在Home中嵌套welcome路由
       path: '/welcome',
       component: Welcome
+    }, {
+      path: '/users',
+      component: Users
     }]
   }
 ]
