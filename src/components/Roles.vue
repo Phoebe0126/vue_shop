@@ -152,6 +152,19 @@ export default {
       }
     },
     async deleteRole (id) {
+      const confirmResult = await this.$confirm(
+        '此操作将永久删除该角色, 是否继续?',
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      ).catch(err => err)
+      // 如果取消
+      if (confirmResult !== 'confirm') {
+        return this.$message.info('您已点击取消')
+      }
       const { data: res } = await this.$http.delete('roles/' + id)
       if (res.meta.status !== 200) {
         this.$message.error('删除角色失败')
