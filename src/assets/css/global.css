@@ -5,13 +5,29 @@ body,
     margin: 0;
     padding: 0;
 }
+
 .el-breadcrumb {
     margin-bottom: 20px;
     font-size: 13px;
 }
+
 .el-card {
     box-shadow: 0 1px 1px rgba(0, 0, 0, .1) !important;
 }
-.el-table {
+
+.el-table,
+.tree-table {
     margin-top: 15px;
 }
+
+.el-scrollbar__wrap {
+    height: 300px !important;
+}
+.el-tag {
+    margin-right: 10px;
+}
+.input-new-tag {
+    width: 200px !important;
+    margin-left: 10px;
+    vertical-align: bottom;
+  }
