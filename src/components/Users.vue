@@ -15,12 +15,13 @@
             placeholder="请输入内容"
             v-model="queryInfo.query"
             clearable
-            @clear="this.getUsersInfo"
+            @clear="getUsersInfo"
+            @change="getUsersInfo"
           >
             <el-button
               slot="append"
               icon="el-icon-search"
-              @click="this.getUsersInfo"
+              @click="getUsersInfo"
             ></el-button> </el-input
         ></el-col>
         <el-col :span="6"
@@ -250,12 +251,13 @@ export default {
       const { data: res } = await this.$http.get('users', {
         params: this.queryInfo
       })
+      console.log(this.queryInfo)
       if (res.meta.status !== 200) {
         this.$message.error('获取用户列表失败！')
       } else {
         this.userList = res.data.users
         // 如果当前页数据为空，则获取上一页的数据
-        if (this.userList.length === 0) {
+        if (this.userList.length === 0 && this.queryInfo.pagenum > 1) {
           this.handleCurrentChange(--this.queryInfo.pagenum)
         }
         this.total = res.data.total
