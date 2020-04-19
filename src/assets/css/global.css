@@ -30,4 +30,10 @@ body,
     width: 200px !important;
     margin-left: 10px;
     vertical-align: bottom;
-  }
+}
+.el-steps {
+    margin: 15px 0;
+}
+.el-step__title {
+    font-size: 13px;
+}

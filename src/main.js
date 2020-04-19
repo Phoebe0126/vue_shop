@@ -5,6 +5,12 @@ import './plugins/element.js'
 import './assets/css/global.css'
 import TreeTable from 'vue-table-with-tree-grid'
 import axios from 'axios'
+// 引入全局富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
@@ -25,6 +31,8 @@ Vue.filter('dateFormat', function (originVal) {
   return `${yy}/${m}/${dd} ${hh}:${mm}:${ss}`
 })
 Vue.config.productionTip = false
+// 全局使用quill
+Vue.use(VueQuillEditor)
 Vue.component('TreeTable', TreeTable)
 new Vue({
   router,

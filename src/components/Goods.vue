@@ -24,7 +24,7 @@
             ></el-button> </el-input
         ></el-col>
         <el-col :span="6"
-          ><el-button type="primary">添加商品</el-button></el-col
+          ><el-button type="primary" @click="goAddPage">添加商品</el-button></el-col
         >
       </el-row>
       <!-- 表格主体区域 -->
@@ -40,7 +40,7 @@
           </template>
            </el-table-column>
         <el-table-column label="操作">
-          <template>
+          <template slot-scope="scope">
             <el-button
               size="mini"
               icon="el-icon-edit"
@@ -50,6 +50,7 @@
               size="mini"
               type="danger"
               icon="el-icon-delete"
+              @click="deleteGoods(scope.row)"
             >
             </el-button>
           </template>
@@ -76,8 +77,8 @@ export default {
     return {
       queryInfo: {
         query: '',
-        pagenum: '1', // 当前页码
-        pagesize: '30' // 每页显示条数
+        pagenum: 1, // 当前页码
+        pagesize: 30 // 每页显示条数
       },
       // 总共的商品条数
       total: 0,
@@ -107,6 +108,31 @@ export default {
     handleCurrentChange (currentPage) {
       this.queryInfo.pagenum = currentPage
       this.getGoodsInfo()
+    },
+    // 删除商品
+    async deleteGoods (row) {
+      const confirmText = await this.$confirm(
+        '此操作将永久删除该项商品, 是否继续?',
+        '提示',
+        {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }
+      ).catch(err => err)
+      if (confirmText !== 'confirm') {
+        return this.$message.error('您已点击取消~')
+      }
+      const { data: res } = await this.$http.delete('goods/' + row.goods_id)
+      if (res.meta.status !== 200) {
+        return this.$message.error('删除失败')
+      }
+      this.$message.success('删除成功啦~')
+      this.getGoodsInfo()
+    },
+    // 转向添加商品页面
+    goAddPage () {
+      this.$router.push('/goods/add')
     }
   }
 }

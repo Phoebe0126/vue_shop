@@ -362,7 +362,6 @@ export default {
         }
       ).catch(err => err)
       if (confirmText === 'confirm') {
-        console.log(this.cateId, attr.attr_id)
         const { data: res } = await this.$http.delete(
           `categories/${this.cateId}/attributes/${attr.attr_id}`
         )
