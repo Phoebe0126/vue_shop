@@ -296,7 +296,6 @@ export default {
       // 简单验证 如果为空则取消提交
       this.$refs.manyParamsRef.validate(async valid => {
         if (!valid) return
-        console.log(this.manyParams.manyValue)
         const { data: res } = await this.$http.post(
           `categories/${this.cateId}/attributes`,
           {
@@ -351,7 +350,6 @@ export default {
     },
     // 删除动态参数属性
     async deleteManyParam (attr) {
-      console.log(attr)
       const confirmText = await this.$confirm(
         '此操作将永久删除该参数, 是否继续?',
         '提示',

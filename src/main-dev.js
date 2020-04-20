@@ -11,7 +11,18 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
+// 引入进度条
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
+// 发起路由之前 显示进度条 NProgress.start();
 axios.interceptors.request.use(config => {
+  NProgress.start()
+  config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+// 路由回复之后 结束进度条 NProgress.done();
+axios.interceptors.response.use(config => {
+  NProgress.done()
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })

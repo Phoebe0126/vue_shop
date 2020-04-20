@@ -135,7 +135,6 @@ export default {
         this.$message.error('获取角色列表失败')
       } else {
         this.roleList = res.data
-        console.log(this.roleList)
       }
     },
     // 删除当前角色指定权限的函数
@@ -201,7 +200,6 @@ export default {
         ...this.$refs.treeRef.getHalfCheckedKeys(),
         ...this.$refs.treeRef.getCheckedKeys()
       ]
-      console.log(checkId)
       const idStr = checkId.join(',')
       const { data: res } = await this.$http.post(`roles/${this.roleId}/rights`, {
         rids: idStr
