@@ -10,6 +10,7 @@ import Category from '../components/Category'
 import Params from '../components/Params'
 import Goods from '../components/Goods'
 import Add from '../components/Add'
+import Orders from '../components/Orders'
 Vue.use(VueRouter)
 
 const routes = [
@@ -49,6 +50,9 @@ const routes = [
     }, {
       path: '/goods/add',
       component: Add
+    }, {
+      path: '/orders',
+      component: Orders
     }]
   }
 ]
@@ -56,7 +60,7 @@ const routes = [
 const router = new VueRouter({
   routes
 })
-
+// 路由前置守卫
 router.beforeEach((to, from, next) => {
   // to表示将要访问的路径
   // from表示从哪个路径跳转

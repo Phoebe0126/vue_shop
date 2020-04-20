@@ -85,7 +85,7 @@ export default {
 
 <style lang="less" scoped>
 .login-container {
-    background-color: #2b4b6b;
+    background-image: linear-gradient(to top, #FC5C7D, #6A82FB);
     height: 100%;
     .login-box {
     width: 450px;
