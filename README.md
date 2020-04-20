@@ -39,5 +39,5 @@ npm run build
 ```
 
 ### 截图展示
-![image-20200420183852550](C:\Users\陈玉婷\AppData\Roaming\Typora\typora-user-images\image-20200420183852550.png)
+![界面展示](https://github.com/Phoebe0126/vue_shop/raw/master/show.png)
 
